@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us — Flyora Aerospace</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/devil-breeze');
+        @import url('https://fonts.cdnfonts.com/css/poppins');
+        @import url('https://fonts.cdnfonts.com/css/bimbo');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        *::-webkit-scrollbar {
+            width: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* background-color: #1B1B1B; */
+            color: #165ff2;
+            font-size: 14px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background video */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Header */
+        header {
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            /* background-color: rgba(27, 27, 27, 0.9); */
+            background-image: repeating-linear-gradient(to right, transparent 0 500px, #eee1 500px 501px);
+        }
+
+        header .content-fit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: min(1200px, 90vw);
+            margin: auto;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo img {
+            height: 20vh;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        header nav ul {
+            display: flex;
+            gap: 2em;
+        }
+
+        header nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        header nav ul li a:hover {
+            color: #4000ff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            color: #4000ff;
+            cursor: pointer;
+        }
+
+        /* Main content */
+        .main-content {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero section */
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: "devil breeze", sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #165ff2;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* About sections */
+        .about-section {
+            margin-bottom: 6rem;
+            padding: 2rem 0;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-grid.reverse {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .section-number {
+            font-family: "devil breeze", sans-serif;
+            font-size: clamp(3rem, 6vw, 6rem);
+            font-weight: bold;
+            color: #4000ff;
+            opacity: 0.3;
+        }
+
+        .section-title {
+            font-family: "devil breeze", sans-serif;
+            font-size: clamp(2rem, 4vw, 4rem);
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* Stats section */
+        .stats-section {
+            background: rgba(64, 0, 255, 0.1);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-family: "devil breeze", sans-serif;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #4000ff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #165ff2;
+            margin-top: 0.5rem;
+        }
+
+        /* Values section */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: rgba(64, 0, 255, 0.05);
+            border: 1px solid rgba(64, 0, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(64, 0, 255, 0.2);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .value-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 1rem;
+        }
+
+        /* Team section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-card {
+            background: rgba(64, 0, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #4000ff, #165ff2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #165ff2;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            color: #165ff2;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 14px;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(64, 0, 255, 0.2);
+        }
+
+        footer span {
+            font-weight: bold;
+            color: #4000ff;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 1rem;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(244, 242, 242, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-radius: 0 0 8px 8px;
+                min-width: 100%;
+            }
+            
+
+            nav.show {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .main-content {
+                padding-top: 100px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .section-grid,
+            .section-grid.reverse {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                padding: 2rem 0;
+            }
+
+            .about-section {
+                margin-bottom: 3rem;
+            }
+
+            .stats-section {
+                padding: 2rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-card,
+            .team-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Tablet landscape */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .section-grid {
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+
+<body>
+    <video class="background-video" autoplay muted loop playsinline>
+        <source src="img/SSYouTube.online_Cloud Heaven Copyrights Free Video_1080p.mp4" type="video/mp4">
+    </video>
+    <header>
+        <div class="content-fit">
+            <div class="logo">
+                <img src="img/flyora_logo-1.png" alt="Flyora Logo" >
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section fade-in">
+                <h1 class="hero-title">ABOUT US</h1>
+                <p class="hero-subtitle">Powering Aviation Excellence</p>
+                <p class="hero-description">
+                    At Flyora Aerospace, we are dedicated to powering the aviation industry with precision-engineered aircraft parts and components. As a trusted global supplier and trading partner, we deliver quality, compliance, and performance — every time.
+                </p>
+            </section>
+
+            <!-- Our Story Section -->
+            <section class="about-section">
+                <div class="section-grid">
+                    <div class="section-number">01</div>
+                    <div class="section-content">
+                        <h2 class="section-title">Our Story</h2>
+                        <p>Founded with a vision to streamline the aircraft supply chain, Flyora Aerospace serves airlines, MROs (Maintenance, Repair & Overhaul centers), OEMs, and aerospace manufacturers with a broad portfolio of certified aviation components.</p>
+                        <p>Since our inception, we have built a reputation for excellence, reliability, and innovation in the aerospace industry. Our commitment to quality and customer satisfaction has made us a preferred partner for aviation professionals worldwide.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section class="about-section">
+                <div class="section-grid reverse">
+                    <div class="section-content">
+                        <h2 class="section-title">Our Mission</h2>
+                        <p>To be the leading global provider of aerospace components and services, ensuring the highest standards of safety, quality, and reliability in aviation. We strive to support our clients' operational excellence through innovative solutions and exceptional service.</p>
+                        <p>Our mission extends beyond just supplying parts – we aim to be strategic partners in our clients' success, providing comprehensive support and expertise that keeps aircraft flying safely and efficiently.</p>
+                    </div>
+                    <div class="section-number">02</div>
+                </div>
+            </section>
+
+            <!-- Stats Section -->
+            <section class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Global Partners</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50K+</span>
+                        <span class="stat-label">Parts Delivered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Countries Served</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">99.9%</span>
+                        <span class="stat-label">Quality Rating</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Values Section -->
+            <!-- <section class="about-section">
+                <div class="section-content">
+                    <h2 class="section-title">Our Values</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <span class="value-icon">🛡️</span>
+                            <h3 class="value-title">Safety First</h3>
+                            <p>Safety is our top priority. Every component we supply meets the highest aviation safety standards and regulations.</p>
+                        </div>
+                        <div class="value-card">
+                            <span class="value-icon">⚡</span>
+                            <h3 class="value-title">Innovation</h3>
+                            <p>We continuously innovate our processes and solutions to stay ahead in the rapidly evolving aerospace industry.</p>
+                        </div>
+                        <div class="value-card">
+                            <span class="value-icon">🤝</span>
+                            <h3 class="value-title">Partnership</h3>
+                            <p>We build lasting relationships with our clients, suppliers, and partners based on trust and mutual success.</p>
+                        </div>
+                        <div class="value-card">
+                            <span class="value-icon">🎯</span>
+                            <h3 class="value-title">Excellence</h3>
+                            <p>We strive for excellence in everything we do, from product quality to customer service and operational efficiency.</p>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Team Section -->
+            <!-- <section class="about-section">
+                <div class="section-content">
+                    <h2 class="section-title">Leadership Team</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-avatar">JD</div>
+                            <h3 class="team-name">John Doe</h3>
+                            <p class="team-role">Chief Executive Officer</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">SM</div>
+                            <h3 class="team-name">Sarah Miller</h3>
+                            <p class="team-role">Chief Technology Officer</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">RJ</div>
+                            <h3 class="team-name">Robert Johnson</h3>
+                            <p class="team-role">VP of Operations</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-avatar">LW</div>
+                            <h3 class="team-name">Lisa Wang</h3>
+                            <p class="team-role">Head of Quality Assurance</p>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Created by <span>Arratsur Innovation</span> &copy; 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('show');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.about-section, .stats-section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+
+</html>

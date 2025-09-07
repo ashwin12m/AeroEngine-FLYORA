@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Flyora Aerospace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/devil-breeze');
+        @import url('https://fonts.cdnfonts.com/css/poppins');
+        @import url('https://fonts.cdnfonts.com/css/bimbo');
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        *::-webkit-scrollbar {
+            width: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            /* background-color: #1B1B1B; */
+            color: #165ff2;
+            font-size: 14px;
+            overflow-x: hidden;
+        }
+
+        /* Fullscreen background video */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Header styles */
+        header {
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            /* background-color: rgba(27, 27, 27, 0.9); */
+            background-image: repeating-linear-gradient(to right, transparent 0 500px, #eee1 500px 501px);
+        }
+
+        header .content-fit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: min(1200px, 90vw);
+            margin: auto;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo img {
+            height: 20vh;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        header nav ul {
+            display: flex;
+            gap: 2em;
+        }
+
+        header nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        header nav ul li a:hover {
+            color: #4000ff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            color: #4000ff;
+            cursor: pointer;
+        }
+        /* Main content */
+        .main-content {
+            min-height: 100vh;
+            padding-top: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-title {
+            font-family: "devil breeze";
+            font-size: clamp(3rem, 8vw, 6em);
+            font-weight: bold;
+            color: #4000ff;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .contact-container {
+            width: min(1200px, 90vw);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 2rem 0;
+        }
+
+        /* Contact Info Section */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(64, 0, 255, 0.2);
+        }
+
+        .contact-info h2 {
+            font-family: "devil breeze";
+            font-size: 2.5em;
+            color: #4000ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #165ff2;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(64, 0, 255, 0.1);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(64, 0, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-item i {
+            font-size: 1.5em;
+            color: #4000ff;
+            width: 30px;
+        }
+
+        .contact-item-content h3 {
+            color: #4000ff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item-content p {
+            color: #165ff2;
+            margin: 0;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(64, 0, 255, 0.2);
+        }
+
+        .contact-form-section h2 {
+            font-family: "devil breeze";
+            font-size: 2.5em;
+            color: #4000ff;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .contact-form label {
+            color: #4000ff;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            padding: 1rem;
+            border: 2px solid rgba(64, 0, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #165ff2;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            outline: none;
+            border-color: #4000ff;
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(64, 0, 255, 0.3);
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(22, 95, 242, 0.7);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #4000ff, #165ff2);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #165ff2, #4000ff);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(64, 0, 255, 0.4);
+        }
+
+        /* Office Hours */
+        .office-hours {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(64, 0, 255, 0.1);
+            border-radius: 12px;
+        }
+
+        .office-hours h3 {
+            color: #4000ff;
+            margin-bottom: 1rem;
+            font-family: "devil breeze";
+            font-size: 1.5em;
+        }
+
+        .hours-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            color: #165ff2;
+        }
+
+        /* Footer */
+        footer {
+            color: #165ff2;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 14px;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(64, 0, 255, 0.2);
+        }
+
+        footer span {
+            font-weight: bold;
+            color: #4000ff;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(244, 242, 242, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-radius: 0 0 8px 8px;
+                min-width: 100%;
+            }
+
+            header nav.show {
+                display: block;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 1em;
+            }
+
+            .page-title {
+                font-size: 3em;
+                margin-bottom: 1rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1rem;
+            }
+
+            .contact-info,
+            .contact-form-section {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hours-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 120px;
+            }
+
+            .contact-info,
+            .contact-form-section {
+                padding: 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <video id="bgVideo" class="background-video" autoplay muted loop playsinline>
+        <source src="img/SSYouTube.online_Cloud Heaven Copyrights Free Video_1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <div class="content-fit">
+            <div class="logo">
+                <img src="img/flyora_logo-1.png" alt="Flyora Logo" >
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h1 class="page-title">CONTACT US</h1>
+        
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Ready to elevate your aerospace operations? Contact Flyora Aerospace today to discuss your aircraft parts and component needs. Our expert team is here to provide you with reliable solutions and exceptional service.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-item-content">
+                            <h3>Email</h3>
+                            <p>info@flyora-aerospace.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-item-content">
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-item-content">
+                            <h3>Address</h3>
+                            <p>1234 Aerospace Drive<br>Aviation City, AC 12345</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-item-content">
+                            <h3>Emergency Support</h3>
+                            <p>24/7 AOG Support Available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="office-hours">
+                    <h3>Business Hours</h3>
+                    <div class="hours-list">
+                        <div class="hours-item">
+                            <span>Monday - Friday</span>
+                            <span>8:00 AM - 6:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Saturday</span>
+                            <span>9:00 AM - 4:00 PM</span>
+                        </div>
+                        <div class="hours-item">
+                            <span>Sunday</span>
+                            <span>Emergency Only</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <h2>Send Message</h2>
+                <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="john.doe@company.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Your Company Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="parts-inquiry">Parts Inquiry</option>
+                            <option value="aog-support">AOG Support</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="quote-request">Quote Request</option>
+                            <option value="technical-support">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Please provide details about your inquiry, including part numbers, quantities, and timeline if applicable..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Created by <span>Arratsur Innovation</span> &copy; 2025</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('show');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+
+        // Form submission handling
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            const requiredFields = this.querySelectorAll('[required]');
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#ff4444';
+                } else {
+                    field.style.borderColor = 'rgba(64, 0, 255, 0.3)';
+                }
+            });
+            
+            if (isValid) {
+                // Here you would normally submit the form
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+    </script>
+</body>
+
+</html>

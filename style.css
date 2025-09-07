@@ -1,0 +1,790 @@
+@import url('https://fonts.cdnfonts.com/css/devil-breeze');
+@import url('https://fonts.cdnfonts.com/css/poppins');
+@import url('https://fonts.cdnfonts.com/css/bimbo');
+
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background-color: #1B1B1B;
+    color: #165ff2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    /* Background video covers page, remove patterned bg */
+}
+
+*::-webkit-scrollbar {
+    width: 0;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-fit {
+    width: min(1200px, 90vw);
+    margin: auto;
+    min-height: 80vh;
+    position: relative;
+    padding-block: 10em;
+}
+
+#about {
+    width: min(1000px, 80vw);
+    margin: auto;
+    min-height: 100vh;
+    position: relative;
+    padding-block: 10em;
+    left: 160px;
+}
+
+
+#contact {
+    width: min(1000px, 80vw);
+    margin: auto;
+    margin-top: 100px;
+    min-height: 100vh;
+    position: relative;
+    padding-block: 10em;
+}
+
+
+
+.logo img {
+    height: 105px;
+    /* fixed missing px */
+    width: 100px;
+    transition: transform 0.3s ease;
+}
+
+header {
+    height: 80px;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    /* background-color: rgba(27, 27, 27, 0.9); */
+    background-image: repeating-linear-gradient(to right, transparent 0 500px, #eee1 500px 501px);
+}
+
+header .content-fit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: min(1200px, 90vw);
+    margin: auto;
+    height: 100%;
+    position: relative;
+    top:-235px;
+    padding: 0 2rem;
+}
+
+.logo img {
+    height: 20vh;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+header nav ul {
+    display: flex;
+    gap: 2em;
+}
+
+header nav ul li a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+}
+
+header nav ul li a:hover {
+    color: #4000ff;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.8em;
+    color: #4000ff;
+    cursor: pointer;
+}
+
+header .content-fit nav ul {
+    display: flex;
+    gap: 2em;
+}
+
+header .content-fit nav ul li a {
+    color: black;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+header .content-fit nav ul li a:hover {
+    color: #4000ff;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    header .content-fit {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.5em 1em;
+    }
+
+    /* Hide nav by default on mobile */
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(27, 27, 27, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 1em;
+        border-radius: 0 0 8px 8px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    /* Hamburger icon */
+    .menu-toggle {
+        display: block;
+        font-size: 1.8em;
+        color: #4000ff;
+        cursor: pointer;
+    }
+}
+
+/* Desktop: Hide hamburger */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+}
+
+header nav.show {
+    display: block;
+}
+
+#banner .title {
+    color: #4000ff;
+    font-size: clamp(3rem, 10vw, 11em);
+    font-family: "devil breeze";
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: 200px;
+}
+
+#banner .title2 {
+    color: #4000ff;
+    font-size: clamp(1rem, 3vw, 3em);
+    font-family: "devil breeze";
+    font-weight: bold;
+    position: relative;
+    text-align: center;
+    top: 250px;
+}
+
+.des p {
+    font-size: 1.5em;
+    color: #4000ff;
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+#banner .title::before {
+    content: attr(data-before);
+    position: relative;
+    top: 0.5em;
+    inset: 0.66em 0 0 0;
+    z-index: -1;
+    color: #0234be;
+}
+
+.section .decorate {
+    position: absolute;
+}
+
+#intro .content-fit {
+    display: flex;
+    gap: 30%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section .number {
+    font-family: "devil breeze";
+    font-size: 5em;
+    font-weight: bold;
+}
+
+.section .content-fit .title {
+    font-family: "devil breeze";
+    font-size: 5em;
+    font-weight: bold;
+}
+
+#description .content-fit {
+    padding-right: 30%;
+}
+
+#description .number {
+    font-size: 5em;
+}
+
+#description .title {
+    font-size: 7em;
+    font-weight: 500;
+}
+
+#contact .content-fit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#contact table {
+    width: min(700px, 80vw);
+    padding-top: 2em;
+    font-size: 2em;
+    margin: auto;
+}
+
+#contact table td {
+    padding-block: 0.5em;
+    border-bottom: 1px dashed #445022;
+}
+
+#contact table td:nth-child(1) {
+    text-align: left;
+    font-weight: 500;
+}
+
+#contact table td:nth-child(2) {
+    text-align: right;
+    font-weight: 200;
+}
+
+#contact .sign {
+    font-family: 'Bimbo', sans-serif;
+    font-size: 10em;
+}
+
+#container3D {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Fullscreen background video */
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.logos-slider {
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    padding: 20px 0;
+    width: 100vw;
+    overflow: hidden;
+    margin-left: -175px;
+}
+
+.logos-track {
+    display: flex;
+    gap: 40px;
+    animation: scroll 15s linear infinite;
+}
+
+.logos-track img {
+    height: 130px;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+
+@media screen and (max-width: 1023px) {
+    #banner .title {
+        font-size: 5em;
+    }
+
+    #intro .content-fit {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #banner .title {
+        font-size: 3em;
+    }
+
+    #intro .content-fit {
+        flex-direction: column;
+    }
+
+    .section .number {
+        font-size: 5em;
+    }
+
+    .section .content-fit .title {
+        font-size: 2em;
+    }
+
+    #description .content-fit {
+        padding-right: 0;
+    }
+
+    #contact table {
+        font-size: 1em;
+    }
+
+    #contact .sign {
+        font-size: 2em;
+    }
+
+    /* Navigation link styles */
+    header nav ul li a {
+        color: #5a32d0;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    header nav ul li a:hover {
+        color: #5030b1;
+    }
+
+    #container3D {
+        position: absolute;
+        /* Positioned within the viewport */
+        top: 50%;
+        /* Center vertically */
+        left: 50%;
+        /* Center horizontally */
+        transform: translate(-50%, -50%);
+        /* Center properly */
+        width: 40vw;
+        /* Limit to 40% of the viewport width */
+        height: 40vh;
+        /* Limit to 40% of the viewport height */
+        max-width: 800px;
+        /* Set a maximum size for larger screens */
+        max-height: 600px;
+        /* Prevent excessive height */
+        overflow: hidden;
+        /* Ensure content outside the bounds is not displayed */
+        z-index: 1;
+        /* Place it behind content */
+        pointer-events: none;
+        /* Make it non-interactive */
+    }
+}
+
+
+
+#contact {
+    padding: 2em;
+    width: 50px;
+    position: relative;
+    bottom: 200px;
+    left: 150px;
+}
+
+#contact h2 {
+    color: #4000ff;
+    margin-bottom: 0.5em;
+    font-size: 2em;
+    font-weight: 700;
+}
+
+#contact p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* General form styling */
+.contact-form {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+}
+
+/* Label styling */
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Input and textarea styling */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Focus effect */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #0077ff;
+    outline: none;
+    box-shadow: 0 0 6px rgba(0, 119, 255, 0.3);
+}
+
+/* Button styling */
+.contact-form button {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(90deg, #0077ff, #00c6ff);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for button */
+.contact-form button:hover {
+    background: linear-gradient(90deg, #005ec2, #0098c9);
+    transform: translateY(-2px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 20px;
+    }
+}
+
+
+/* Extra small devices (phones) */
+@media screen and (max-width: 767px) {
+
+    /* General */
+    .content-fit {
+        padding-block: 4em;
+        min-height: auto;
+    }
+
+    #about,
+    #capabilities,
+    #contact {
+        left: 0;
+        right: 0;
+        width: 90%;
+        padding-block: 4em;
+    }
+
+    /* Banner */
+    #banner .title {
+        font-size: 2.5em;
+        top: 100px;
+    }
+
+    #banner .title2 {
+        font-size: 1.5em;
+        top: 130px;
+    }
+
+    /* Intro & Description */
+    #intro .content-fit {
+        flex-direction: column;
+        gap: 2em;
+        text-align: center;
+    }
+
+    #description .content-fit {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .section .number {
+        font-size: 2.5em;
+    }
+
+    .section .content-fit .title {
+        font-size: 2em;
+    }
+
+    /* Logos slider */
+    .logos-slider {
+        margin-left: 0;
+        padding: 10px 0;
+    }
+
+    .logos-track img {
+        height: 60px;
+        width: auto;
+    }
+
+    /* Contact section */
+    #contact {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        padding: 1.5em;
+    }
+
+    #contact table {
+        font-size: 0.9em;
+    }
+
+    #contact .sign {
+        font-size: 1.5em;
+    }
+}
+
+
+
+.content {
+    flex: 1;
+    /* pushes footer to bottom */
+}
+
+footer {
+    color: black;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    position: relative;
+    top: 660px;
+    width: 100%;
+    white-space: nowrap;
+
+}
+
+footer span {
+    font-weight: bold;
+    color: #00bfff;
+}
+
+.slider-container {
+    /* A container to hold the slider and its controls */
+    position: relative;
+    width: 100%;
+    max-width: 50%;
+    /* Occupy left half of the screen */
+    height: 450px;
+    /* Fixed height to show one slide */
+    overflow: hidden;
+    /* This is key to the vertical slide effect */
+    border-radius: 1rem;
+    background: transparent;
+    /* Transparent background */
+}
+
+.slider {
+    /* The element that will contain all the slides and move vertically */
+    height: 100%;
+    /* A more dynamic transition for the scroll effect */
+    transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.service-slide {
+    /* Individual slide styling */
+    width: 100%;
+    height: 100%;
+    /* Each slide takes the full height of the container */
+    box-sizing: border-box;
+    background: transparent;
+    /* Transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.service-slide-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1e3a8a;
+    /* Dark blue text color */
+}
+
+.service-slide-text p {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    color: #1d4ed8;
+    /* Slightly lighter blue text color */
+}
+
+/* Pagination Dots Styling for Vertical Layout */
+.dots-container {
+    position: absolute;
+    top: 50%;
+    left: 1.5rem;
+    /* Position dots on the left */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    /* Stack dots vertically */
+    gap: 0.75rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(15, 32, 39, 0.4);
+    /* Darker dots */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #1e3a8a;
+    /* Blue active dot */
+}
+
+
+
+#what-we-do1 {
+    position: relative;
+    overflow: hidden;
+}
+
+#WHT2 {
+    position: relative;
+    left: 60%;
+}
+
+.what-we-do-container {
+    /* A container to hold the slider and its controls */
+    position: relative;
+    left: 60%;
+    width: 50%;
+    max-width: 50%;
+    /* Occupy right half of the screen */
+    height: 450px;
+    /* Fixed height to show one slide */
+    overflow: hidden;
+    /* This is key to the vertical slide effect */
+    border-radius: 1rem;
+    background: transparent;
+    /* Transparent background */
+}
+
+
+
+#wwdSlider {
+    /* The element that will contain all the slides and move vertically */
+    height: 100%;
+    /* A more dynamic transition for the scroll effect */
+    transition: transform 0.7s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.wwd-slide {
+    /* Individual slide styling */
+    width: 100%;
+    height: 100%;
+    /* Each slide takes the full height of the container */
+    box-sizing: border-box;
+    background: transparent;
+    /* Transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.wwd-slide-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1e3a8a;
+    /* Dark blue text color */
+}
+
+.wwd-slide-text p {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.9;
+    color: #1d4ed8;
+    /* Slightly lighter blue text color */
+}
+
+/* Pagination Dots Styling for Vertical Layout */
+.wwd-dots-container {
+    position: absolute;
+    top: 50%;
+    right: 1.5rem;
+    /* Position dots on the right */
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    /* Stack dots vertically */
+    gap: 0.75rem;
+}
+
+.wwd-dot {
+    width: 12px;
+    height: 12px;
+    background-color: rgba(15, 32, 39, 0.4);
+    /* Darker dots */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.wwd-dot.active {
+    background-color: #1e3a8a;
+    /* Blue active dot */
+}

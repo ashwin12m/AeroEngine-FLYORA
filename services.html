@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Flyora Aerospace</title>
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/devil-breeze');
+        @import url('https://fonts.cdnfonts.com/css/poppins');
+        @import url('https://fonts.cdnfonts.com/css/bimbo');
+
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            box-sizing: border-box;
+        }
+
+        *::-webkit-scrollbar {
+            width: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            /* background-color: #1B1B1B; */
+            color: #165ff2;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Fullscreen background video */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* Header Styles */
+        header {
+            height: 80px;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            /* background-color: rgba(27, 27, 27, 0.9); */
+            background-image: repeating-linear-gradient(to right, transparent 0 500px, #eee1 500px 501px);
+        }
+
+        header .content-fit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: min(1200px, 90vw);
+            margin: auto;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo img {
+            height: 20vh;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        header nav ul {
+            display: flex;
+            gap: 2em;
+        }
+
+        header nav ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        header nav ul li a:hover {
+            color: #4000ff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8em;
+            color: #4000ff;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 120px;
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-family: "devil breeze", sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(64, 0, 255, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: #165ff2;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-container {
+            width: min(1200px, 90vw);
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(64, 0, 255, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(64, 0, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #4000ff;
+            box-shadow: 0 20px 40px rgba(64, 0, 255, 0.2);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #4000ff, #165ff2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-title {
+            font-family: "devil breeze", sans-serif;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4000ff;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            color: #165ff2;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .service-features li {
+            color: #165ff2;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4000ff;
+            font-weight: bold;
+        }
+
+        .service-cta {
+            background: linear-gradient(135deg, #4000ff, #165ff2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .service-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(64, 0, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            color: #165ff2;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 14px;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(64, 0, 255, 0.2);
+        }
+
+        footer span {
+            font-weight: bold;
+            color: #4000ff;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            header nav {
+                
+                display: none;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                background: rgba(244, 242, 242, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 1rem;
+                border-radius: 0 0 8px 8px;
+                min-width: 100%;
+            }
+
+            header nav.show {
+                display: block;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-card {
+                padding: 2rem;
+            }
+
+            .services-container {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .service-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Tablet Landscape */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1400px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <video class="background-video" autoplay muted loop playsinline>
+        <source src="img/SSYouTube.online_Cloud Heaven Copyrights Free Video_1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header>
+        <div class="content-fit">
+            <div class="logo">
+                <img src="img/flyora_logo-1.png" alt="Flyora Logo">
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1 class="hero-title">OUR SERVICES</h1>
+            <p class="hero-subtitle">Comprehensive aerospace solutions designed to elevate your operations to new heights</p>
+        </section>
+
+        <div class="services-container">
+            <div class="services-grid">
+                <!-- Service 1: Satellite Launch -->
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h2 class="service-title">Satellite Launch</h2>
+                    <p class="service-description">Professional satellite deployment services with precision and safety, ensuring successful orbital insertion for commercial and research missions.</p>
+                    <ul class="service-features">
+                        <li>Pre-launch mission planning</li>
+                        <li>Payload integration services</li>
+                        <li>Launch vehicle coordination</li>
+                        <li>Post-launch tracking support</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+
+                <!-- Service 2: Space Research -->
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h2 class="service-title">Space Research</h2>
+                    <p class="service-description">Advanced research in orbital mechanics and deep space exploration, pushing the boundaries of human knowledge and technological capabilities.</p>
+                    <ul class="service-features">
+                        <li>Orbital dynamics analysis</li>
+                        <li>Deep space mission planning</li>
+                        <li>Scientific payload development</li>
+                        <li>Data collection & analysis</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+
+                <!-- Service 3: Aerospace Engineering -->
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h2 class="service-title">Aerospace Engineering</h2>
+                    <p class="service-description">Innovative engineering solutions for aviation and space systems, delivering cutting-edge technology for next-generation aerospace applications.</p>
+                    <ul class="service-features">
+                        <li>System design & optimization</li>
+                        <li>Structural analysis</li>
+                        <li>Propulsion system development</li>
+                        <li>Performance testing</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+
+                <!-- Service 4: Mission Planning -->
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h2 class="service-title">Mission Planning</h2>
+                    <p class="service-description">Comprehensive planning for successful space missions and launches, ensuring every detail is meticulously coordinated for optimal outcomes.</p>
+                    <ul class="service-features">
+                        <li>Mission architecture design</li>
+                        <li>Risk assessment & mitigation</li>
+                        <li>Timeline optimization</li>
+                        <li>Resource allocation</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+
+                <!-- Service 5: Payload Integration -->
+                <div class="service-card">
+                    <div class="service-icon">📦</div>
+                    <h2 class="service-title">Payload Integration</h2>
+                    <p class="service-description">Secure and efficient payload handling for space-bound projects, ensuring seamless integration with launch vehicles and mission requirements.</p>
+                    <ul class="service-features">
+                        <li>Payload compatibility testing</li>
+                        <li>Integration procedures</li>
+                        <li>Safety protocol implementation</li>
+                        <li>Quality assurance checks</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+
+                <!-- Service 6: Data Analytics -->
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h2 class="service-title">Data Analytics</h2>
+                    <p class="service-description">Cutting-edge analytics for space data interpretation and research, transforming raw mission data into actionable insights and discoveries.</p>
+                    <ul class="service-features">
+                        <li>Real-time data processing</li>
+                        <li>Predictive modeling</li>
+                        <li>Performance optimization</li>
+                        <li>Custom reporting solutions</li>
+                    </ul>
+                    <button class="service-cta">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Created by <span>Arratsur Innovation</span> &copy; 2025</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('show');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
+                nav.classList.remove('show');
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation for service cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initially hide cards and observe them
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
